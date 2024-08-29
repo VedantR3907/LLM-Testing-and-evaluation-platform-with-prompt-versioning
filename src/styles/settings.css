@@ -1,0 +1,14 @@
+.element-container:has(#openai-button-after) + div button,
+.element-container:has(#gemini-button-after) + div button,
+.element-container:has(#claude-button-after) + div button,
+.element-container:has(#groq-button-after) + div button {
+    background-color: blue;
+    border: none;  /* Remove border */
+    margin-top: 12px;  /* Adjust margin to align button with input text */
+}
+.element-container:has(#button-after) + div button:hover {
+    border: none;  /* Remove border on hover */
+}
+#openai-subheader, #gemini-subheader {
+    margin-bottom: -20px;  /* Reduce space below subheaders */
+}

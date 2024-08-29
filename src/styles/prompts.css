@@ -1,0 +1,47 @@
+.base-prompt-container {
+    background-color: rgb(26, 28, 36); /* Dark background color */
+    color: rgb(250, 250, 250); /* Light gray color for the text */
+    padding: 15px; /* Increased padding */
+    font-size: 18px; /* Increased font size */
+    font-weight: bold; /* Bold text */
+    border-radius: 5px; /* Rounded corners */
+    max-height: 200px;
+    overflow-y: auto;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.scrollable-container {
+    overflow-y: auto;
+    border: 1px solid #E5E7EB;  
+    padding: 10px;
+    border-radius: 10px;  
+    font-family: monospace;
+    font-size: 13px;
+    background-color: #1F2937;  /* Darker background color for the scrollable container */
+    color: #D1D5DB;  /* Light gray color for the text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+    margin-bottom: 10px;
+}
+
+.small-container { height: 60px; }
+.large-container { height: 100px; }
+.search-input { margin-bottom: 20px; }
+.main-container { padding: 20px; max-width: 800px; margin: auto; }
+
+h1 {
+    color: #F9FAFB;  /* Light color for the title */
+    font-size: 15px;
+    font-family: monospace;
+    font-weight: 700;
+}
+
+button {
+    background-color: #10B981;  
+    color: white;
+    font-size: 16px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
