@@ -8,6 +8,8 @@ load_dotenv()
 
 
 encrypt_api_key = os.environ.get('ENCRYPTION_KEY').encode()
+key_hex = os.environ.get('ENCRYPTION_KEY')
+encrypt_api_key = bytes.fromhex(key_hex)
 
 def fetch_user_prompts(user_id):
     """Fetches all prompts written by a given user from the chat_history table, excluding the current prompt."""

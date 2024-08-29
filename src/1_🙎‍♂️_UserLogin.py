@@ -52,7 +52,7 @@ def sign_up(email, password):
         return
 
     try:
-        user = supabase.auth.sign_up({
+        user = supabase.auth.sign_up({  # noqa: F841
             'email': email,
             'password': password,
         })
@@ -74,7 +74,7 @@ def sign_in(email, password):
         st.error(f"Error: {e}")
 
 if 'session' in server_state and server_state['session']:
-    st.switch_page('srcpages/2_🌍_Main.py')
+    st.switch_page('./pages/2_🌍_Main.py')
 
 else:
     

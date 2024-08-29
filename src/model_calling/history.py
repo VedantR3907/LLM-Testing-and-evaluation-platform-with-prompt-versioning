@@ -15,32 +15,32 @@ def display_chat_history(ctx, col, model_id, model_name, user_id):
 
         if 'gpt' in model_name:
             role, content = message["role"], message["content"]
-            avatar_path = '../assests/openai.png'
+            avatar_path = 'assests/openai.png'
         
         elif 'gemini' in model_name:
             role, content = message['role'], message['parts'][0]['text']
-            avatar_path = '../assests/google.png'
+            avatar_path = 'assests/google.png'
         
         elif 'llama' in model_name:
             role, content = message["role"], message["content"]
-            avatar_path = '../assests/meta.png'
+            avatar_path = 'assests/meta.png'
         
         elif 'mixtral' in model_name:
             role, content = message["role"], message["content"]
-            avatar_path = '../assests/mistral.png'
+            avatar_path = 'assests/mistral.png'
         
         elif 'gemma' in model_name:
             role, content = message["role"], message["content"]
-            avatar_path = '../assests/gemma.png'
+            avatar_path = 'assests/gemma.png'
         
         elif 'claude' in model_name:
             role, content = message["role"], message["content"]
             if content == 'Hi dummyved3907':
                 content = ''
-            avatar_path = '../assests/claude.png'
+            avatar_path = 'assests/claude.png'
             
         if role == "user" and content != '':
-            with col.chat_message("Human", avatar='../assests/user.png'):
+            with col.chat_message("Human", avatar='assests/user.png'):
                 st.markdown(content)
         elif role == 'assistant' or role == 'model':
             with col.chat_message("AI",avatar=avatar_path):
@@ -51,19 +51,19 @@ def display_message(ctx, col, prompt, generator, model_name):
 
     if prompt != '':
         if 'gpt' in model_name:
-            avatar_path = '../assests/openai.png'
+            avatar_path = 'assests/openai.png'
         elif 'gemini' in model_name:
-            avatar_path = '../assests/google.png'
+            avatar_path = 'assests/google.png'
         elif 'llama' in model_name:
-            avatar_path = '../assests/meta.png'
+            avatar_path = 'assests/meta.png'
         elif 'mixtral' in model_name:
-            avatar_path = '../assests/mistral.png'
+            avatar_path = 'assests/mistral.png'
         elif 'gemma' in model_name:
-            avatar_path = '../assests/gemma.png'
+            avatar_path = 'assests/gemma.png'
         elif 'claude' in model_name:
-            avatar_path = '../assests/claude.png'
+            avatar_path = 'assests/claude.png'
 
-        with col.chat_message("HUMAN", avatar='../assests/user.png'):
+        with col.chat_message("HUMAN", avatar='assests/user.png'):
             st.markdown(prompt)
         with col.chat_message("AI",avatar=avatar_path):
             st.write(generator)

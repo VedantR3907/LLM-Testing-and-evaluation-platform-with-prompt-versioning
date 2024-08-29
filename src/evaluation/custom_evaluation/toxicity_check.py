@@ -7,7 +7,7 @@ def load_model(model_name):
 
 def get_toxicity_scores(sentence):
     model_name, tokenizer = load_model("unitary/toxic-bert")
-    inputs = tokenizer.encode_plus(sentence, return_tensors='pt')
+    inputs = tokenizer.encode_plus(sentence, return_tensors='pt', max_length=512)
     outputs = model_name(**inputs)
     scores = outputs[0].softmax(1).detach().numpy()[0]
     labels = ['toxic', 'obscene', 'insult']

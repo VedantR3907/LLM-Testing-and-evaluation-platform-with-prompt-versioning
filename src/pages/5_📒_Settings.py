@@ -18,7 +18,7 @@ user_id = session.user.id
 st.header("🔐 API Keys")
 
 # CSS to style the button and subheaders
-with open("styles/settings.css") as f:
+with open("src/styles/settings.css") as f:
         css = f.read()
 
 # Adding custom CSS to style the containers and make them scrollable
@@ -48,7 +48,7 @@ if col2.button("Verify →", key='openai'):
                 st.session_state['openai_verify_apikey'][0] += 1
                 response, messages, response_time = openai_verify(api_key=openai_key)
                 if response:
-                    if st.session_state['openai_verify_apikey'][1] == False:
+                    if st.session_state['openai_verify_apikey'][1] == False:  # noqa: E712
                         verify_api_key(user_id, 'openai', openai_key)
                         st.session_state['openai_verify_apikey'][1] = True
                         reset_clients()
@@ -84,7 +84,7 @@ if col4.button("Verify →", key='gemini'):
                 st.session_state['gemini_verify_apikey'][0] += 1
                 response = gemini_verify(api_key=gemini_key)
                 if response:
-                    if st.session_state['gemini_verify_apikey'][1] == False:
+                    if st.session_state['gemini_verify_apikey'][1] == False:  # noqa: E712
                         verify_api_key(user_id, 'gemini', gemini_key)
                         st.session_state['gemini_verify_apikey'][1] = True
                         reset_clients()
@@ -107,7 +107,7 @@ if col6.button("Verify →", key='groq'):
             current_time = time.time()
 
             # Check if 'groq_last_verify_time' is in the session state and if less than 60 seconds have passed since the last verification attempt
-            if 'groq_last_verify_time' in st.session_state and current_time - st.session_state['groq_last_verify_time'] < 60:
+            if 'groq_last_verify_time' in st.session_state and current_time - st.session_state['groq_last_verify_time'] < 10:
                 remaining_time = 60 - (current_time - st.session_state['groq_last_verify_time'])
                 st.toast(f"Wait for {remaining_time:.0f} seconds until you can verify again.", icon='❌')
             else:
@@ -119,7 +119,7 @@ if col6.button("Verify →", key='groq'):
 
                 response = groq_verify(api_key=groq_key)
                 if response:
-                    if st.session_state['groq_verify_apikey'][1] == False:
+                    if st.session_state['groq_verify_apikey'][1] == False:  # noqa: E712
                         verify_api_key(user_id, 'groq', groq_key)
                         st.session_state['groq_verify_apikey'][1] = True
                         reset_clients()
@@ -154,7 +154,7 @@ if col8.button("Verify →", key='claude'):
 
                 response = claude_verify(api_key=claude_key)
                 if response:
-                    if st.session_state['claude_verify_apikey'][1] == False:
+                    if st.session_state['claude_verify_apikey'][1] == False:  # noqa: E712
                         verify_api_key(user_id, 'claude', claude_key)
                         st.session_state['claude_verify_apikey'][1] = True
                         reset_clients()

@@ -22,14 +22,14 @@ from streamlit_server_state import server_state
 SCRIPT_DIR = os.path.dirname(os.path.abspath('assests'))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 sys.path.append('./version_control')
-from streamlit.runtime.scriptrunner import add_script_run_ctx
-from database.interaction_history import append_message
-from database.models_db import fetch_model_details
-from streamlit.runtime.scriptrunner.script_run_context import get_script_run_ctx
-from dotenv import load_dotenv
-from model_calling.history import display_chat_history, display_message
-from model_calling.popovers import display_popovers
-from model_calling.bottom_container import create_bottom_container
+from streamlit.runtime.scriptrunner import add_script_run_ctx  # noqa: E402
+from database.interaction_history import append_message  # noqa: E402
+from database.models_db import fetch_model_details  # noqa: E402
+from streamlit.runtime.scriptrunner.script_run_context import get_script_run_ctx  # noqa: E402
+from dotenv import load_dotenv # noqa: E402
+from model_calling.history import display_chat_history, display_message # noqa: E402
+from model_calling.popovers import display_popovers # noqa: E402
+from model_calling.bottom_container import create_bottom_container # noqa: E402
 ################################################################################################################
 MAX_HISTORY_LENGTH = 5
 
@@ -69,7 +69,7 @@ google_eval = st.session_state["gemini_eval"]
 claude_eval = st.session_state["claude_eval"]
 gemma_eval = st.session_state["gemma_eval"]
 llama_eval = st.session_state["llama_eval"]
-mistral_eval = st.session_state["llama_eval"]
+mistral_eval = st.session_state["mistral_eval"]
 
 load_dotenv()
 ################################################################################################################
@@ -124,7 +124,7 @@ def call_chain(ctx, model_name, prompt):
                     response_token = google_eval.gemini_token_count(gemini_models, response_content)
                     cost = 0
 
-                except Exception as e:
+                except Exception as e:  # noqa: F841
                     st.warning("Low Max_Output_Tokens")
                     prompt_token = 0
                     response_token = 0
@@ -159,6 +159,7 @@ def call_chain(ctx, model_name, prompt):
                 cost = 0
             
             elif 'mixtral' in model_name:
+
                 response, messages, response_time = mistral_model(model_name, model_id, user_id, prompt, temperature=temperature, p_value=p_value, max_tokens=max_tokens)
                 if response is None:
                     st.error(messages)
@@ -216,6 +217,7 @@ def call_chain(ctx, model_name, prompt):
             
         
             if model_name in st.session_state:
+                print(model_name)
                 st.session_state[model_name] = {
                     'prompt_token': prompt_token,
                     'response_token': response_token,
@@ -287,7 +289,7 @@ def give_output(ctx, generator, col, model_id, prompt, model_name):
 
     # Check if the selected models have changed
     current_selected_models = st.session_state.get("selected_models", [])
-    previous_selected_models = st.session_state.get("previous_selected_models", [])
+    previous_selected_models = st.session_state.get("previous_selected_models", [])  # noqa: F841
 
     if model_name in st.session_state:
         model_data = st.session_state[model_name]
@@ -302,7 +304,7 @@ def give_output(ctx, generator, col, model_id, prompt, model_name):
 
 if "selected_models" not in st.session_state:
     # Default model selection (you can set it to empty if you want no defaults)
-    st.session_state["selected_models"] = ["gpt-3.5-turbo"]
+    st.session_state["selected_models"] = ["gpt-4o-mini"]
 
 for model_name in MODEL_CHOICES:
     if f'{model_name}_temperature' not in st.session_state:

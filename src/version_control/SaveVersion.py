@@ -1,12 +1,11 @@
-from CheckVersion import query_huggingface_api, determine_version_increment
-from datetime import datetime, timedelta
+from version_control.CheckVersion import query_huggingface_api, determine_version_increment
+from database.prompts import get_latest_version_from_view
+from datetime import datetime
 import sys
 from pathlib import Path
-from dateutil import parser
 parent_dir = str(Path(__file__).resolve().parent.parent)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
-from  database.prompts import get_latest_version_from_view
 
 def Saving_Version(prompt_id, prompt):
 
