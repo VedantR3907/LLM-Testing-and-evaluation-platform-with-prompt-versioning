@@ -7,16 +7,16 @@ def insert_saved_prompt(user_id, prompt_title, prompt):
         "prompt_title": prompt_title,
         "prompt": prompt
     }
-    response = supabase.table("Saved_Prompts").insert(data).execute()
+    response = supabase.table("saved_prompts").insert(data).execute()
     return response
 
 def fetch_saved_prompts(user_id):
-    response = supabase.table("Saved_Prompts").select("*").eq("user_id", user_id).execute()
+    response = supabase.table("saved_prompts").select("*").eq("user_id", user_id).execute()
     return response
 
 def fetch_all_versions_prompt(prompt_id):
     """Fetches all versions of a given prompt from the Version_Prompts table."""
-    response = supabase.table("Version_Prompts")\
+    response = supabase.table("version_prompts")\
                   .select("*")\
                   .eq("prompt_id", prompt_id)\
                   .order("version", desc=True)\
@@ -24,7 +24,7 @@ def fetch_all_versions_prompt(prompt_id):
     return response
 
 def get_latest_version_prompt(prompt_id):
-    response = supabase.table("Version_Prompts")\
+    response = supabase.table("version_prompts")\
                   .select("*")\
                   .eq("prompt_id", prompt_id)\
                   .order("version", desc=True)\
@@ -46,11 +46,11 @@ def insert_version_prompt(prompt_id, prompt, version):
         "prompt": prompt,
         "version": version
     }
-    response = supabase.table("Version_Prompts").insert(data).execute()
+    response = supabase.table("version_prompts").insert(data).execute()
     return response
 
 def delete_version_prompt(prompt_id, version):
-    response = supabase.from_("Version_Prompts")\
+    response = supabase.from_("version_prompts")\
                        .delete()\
                        .eq('prompt_id', prompt_id)\
                        .eq('version', version)\
@@ -58,14 +58,14 @@ def delete_version_prompt(prompt_id, version):
     return response
 
 def delete_saved_prompt(prompt_id):
-    response = supabase.from_("Saved_Prompts")\
+    response = supabase.from_("saved_prompts")\
                        .delete()\
                        .eq('id', prompt_id)\
                        .execute()
     return response
 
 def delete_all_version_prompts(prompt_id):
-    response = supabase.from_("Version_Prompts")\
+    response = supabase.from_("version_prompts")\
                        .delete()\
                        .eq('prompt_id', prompt_id)\
                        .execute()

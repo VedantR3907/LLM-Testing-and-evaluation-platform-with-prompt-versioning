@@ -31,7 +31,7 @@ else:
     else:
         data = st.session_state['version_prompts_data']
 
-with open("styles/prompts.css") as f:
+with open("src/styles/prompts.css") as f:
         css = f.read()
 
 # Adding custom CSS to style the containers and make them scrollable
