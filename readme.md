@@ -38,7 +38,7 @@ streamlit run  1_🙎‍♂️_UserLogin.py
 
 ### User Authentication
 
-The application supports user authentication. You can sign up with a new account or log in with an existing one.
+The application supports user authentication. You can sign up with a new account or log in with an existing one if you want.
 
 ### Model Interaction
 
